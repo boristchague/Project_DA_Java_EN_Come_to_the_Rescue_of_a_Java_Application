@@ -9,7 +9,7 @@ import java.util.*;
 public class AnalyticsCounter {
 	//private static int headacheCount = 0;	// initialize to 0
 	//private static int rashCount = 0;		// initialize to 0
-	//private static int pupilCount = 0;		// initialize to 0
+	//private static int pupilCount = 0;		// initialize to 0"
 	
 	public static void main(String args[]) throws IOException {
 
@@ -20,23 +20,24 @@ public class AnalyticsCounter {
 		Set<String> distinct = new HashSet<String>(RSDF.GetSymptoms());
 
 		//set -> list
-		List<String> listString = new ArrayList<String>(distinct) ;
+		List<String> listString = new ArrayList<String>(distinct);
 
 		//Sort the list
 		Collections.sort(listString);
 
-		//file object
-		FileWriter writer = new FileWriter ("result.out");
+
+		WriteSymtomDataIntoFile WSDF = new WriteSymtomDataIntoFile("result.out");
+
+		WSDF.WriteSymptom(listString);
 
 
-		for (String s: listString) {
 
-		//write in file
-			writer.write(s + " :    " +  Collections.frequency(RSDF.GetSymptoms(), s) + "\n");
-		}
 
-		writer.close();
 
+		/* TODO
+		 ** Interface de l'écriture
+		 * utiliser un dictionnaire qui classe directement / interface map,, et plusieur map
+		 */
 
 	}
 

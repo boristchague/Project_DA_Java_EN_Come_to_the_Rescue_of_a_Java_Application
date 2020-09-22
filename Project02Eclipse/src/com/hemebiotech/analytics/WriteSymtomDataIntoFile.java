@@ -2,31 +2,35 @@ package com.hemebiotech.analytics;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
+/**
+ * Simple brute force implementation
+ *
+ */
 public class WriteSymtomDataIntoFile implements ISymptomWriter{
 
-    String fileName;
+    private final String fileName;
+
+    /**
+     *
+     * @param fileName a full or partial path to file with symptom strings in it, one per line
+     */
     public WriteSymtomDataIntoFile(String fileName){
         this.fileName = fileName;
     }
 
     @Override
-    public void WriteSymptom(Map map) {
-
+    public void writeSymptom(Map map) {
 
         try {
-            //Create a file object
+
             FileWriter writer = new FileWriter (fileName);
 
-            //Iterate to write into the file
             for(Object symptomKey: map.keySet()) {
                 writer.write(symptomKey + " :    " +  map.get(symptomKey) + "\n");
             }
 
-            //close file
             writer.close();
 
         } catch (IOException e) {

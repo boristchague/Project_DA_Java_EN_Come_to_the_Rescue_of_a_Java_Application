@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class WriteSymtomDataIntoFile implements ISymptomWriter{
 
@@ -13,16 +14,16 @@ public class WriteSymtomDataIntoFile implements ISymptomWriter{
     }
 
     @Override
-    public void WriteSymptom(List<String> listSymptom) {
+    public void WriteSymptom(Map map) {
 
 
         try {
             //Create a file object
-            FileWriter writer = new FileWriter ("results.out");
+            FileWriter writer = new FileWriter (fileName);
 
             //Iterate to write into the file
-            for (String s: listSymptom) {
-                writer.write(s + " :    " +  Collections.frequency(listSymptom, s) + "\n");
+            for(Object symptomKey: map.keySet()) {
+                writer.write(symptomKey + " :    " +  map.get(symptomKey) + "\n");
             }
 
             //close file

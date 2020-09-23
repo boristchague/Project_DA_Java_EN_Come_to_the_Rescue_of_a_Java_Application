@@ -21,13 +21,13 @@ public class WriteSymtomDataIntoFile implements ISymptomWriter{
     }
 
     @Override
-    public void writeSymptom(Map map) {
+    public void writeSymptom(Map<String, Integer> map) {
 
         try {
 
             FileWriter writer = new FileWriter (fileName);
 
-            for(Object symptomKey: map.keySet()) {
+            for(String symptomKey: map.keySet()) {
                 writer.write(symptomKey + " :    " +  map.get(symptomKey) + "\n");
             }
 
